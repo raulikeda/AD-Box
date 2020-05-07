@@ -1,6 +1,6 @@
+import { toast } from 'react-toastify'
 import { generateStore, EventActions } from '@drizzle/store'
 import drizzleOptions from '../drizzleOptions'
-import { toast } from 'react-toastify'
 
 const contractEventNotifier = store => next => action => {
   if (action.type === EventActions.EVENT_FIRED) {
@@ -14,12 +14,14 @@ const contractEventNotifier = store => next => action => {
   return next(action)
 }
 
-const appMiddlewares = [ contractEventNotifier ]
 
-export default generateStore({
+const appMiddlewares = [contractEventNotifier]
+
+const store = generateStore({
   drizzleOptions,
   appMiddlewares,
   disableReduxDevTools: false  // enable ReduxDevTools!
 })
 
-
+// Use the store with DrizzleProvider
+export default store

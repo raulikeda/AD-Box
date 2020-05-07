@@ -5,15 +5,19 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
-//const { AccountData, ContractData } = newContextComponents;
 
-let acc = Math.floor(Math.random() * 10);
+var acc = 0;
+
+let url = new URL(window.location.href);
+
+if (url.searchParams.get('acc')) {
+  acc = url.searchParams.get('acc')
+}
 
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
-
   return (
-    <div className="App">
+    < div className="App" >
       <ToastContainer />
       <div>
         <img src={logo} alt="drizzle-logo" />
@@ -37,7 +41,7 @@ export default ({ drizzle, drizzleState }) => {
         />
       </div>
 
-      <div className="section">
+      {/* <div className="section">
         <h2>Saldo da Conta no Banco</h2>
         <p>
           Exemplo de como pegar um atributo do contrato com a minha própria chave.
@@ -55,36 +59,34 @@ export default ({ drizzle, drizzleState }) => {
 
       </div>
       <div className="section">
-        <h2>TutorialToken</h2>
+        <h2>Realizando Operações</h2>
         <p>
-          Here we have a form with custom, friendly labels. Also note the token
-          symbol will not display a loading indicator. We've suppressed it with
-          the <code>hideIndicator</code> prop because we know this variable is
-          constant.
+          Abaixo algumas das interações possíveis com o contrato, baseado nos métodos disponíveis.
         </p>
-      </div>
-      <h3>Deposito (1000 wei)</h3>
-      <ContractForm
-        drizzle={drizzle}
-        contract="Bank"
-        method="deposit"
-        sendArgs={{ "from": drizzleState.accounts[acc], "value": 1000 }}
-      />
-      <h3>Saque</h3>
-      <ContractForm
-        drizzle={drizzle}
-        contract="Bank"
-        method="withdraw"
-        labels={["Quantidade Desejada"]}
-      />
-      <h3>Transferência</h3>
-      <ContractForm
-        drizzle={drizzle}
-        contract="Bank"
-        method="transfer"
-        labels={["Conta Destino", "Quantidade Desejada"]}
-      />
 
-    </div>
+        <h3>Deposito (1000 wei)</h3>
+        <ContractForm
+          drizzle={drizzle}
+          contract="Bank"
+          method="deposit"
+          sendArgs={{ "from": drizzleState.accounts[acc], "value": 1000 }}
+        />
+        <h3>Saque</h3>
+        <ContractForm
+          drizzle={drizzle}
+          contract="Bank"
+          method="withdraw"
+          labels={["Quantidade Desejada"]}
+        />
+        <h3>Transferência</h3>
+        <ContractForm
+          drizzle={drizzle}
+          contract="Bank"
+          method="transfer"
+          sendArgs={{ "from": drizzleState.accounts[acc] }}
+          labels={["Conta Destino", "Quantidade Desejada"]}
+        />
+      </div> */}
+    </div >
   );
 };
