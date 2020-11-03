@@ -41,7 +41,7 @@ export default ({ drizzle, drizzleState }) => {
         />
       </div>
 
-      {/* <div className="section">
+      <div className="section">
         <h2>Saldo da Conta no Banco</h2>
         <p>
           Exemplo de como pegar um atributo do contrato com a minha própria chave.
@@ -86,7 +86,7 @@ export default ({ drizzle, drizzleState }) => {
           sendArgs={{ "from": drizzleState.accounts[acc] }}
           labels={["Conta Destino", "Quantidade Desejada"]}
         />
-      </div> */}
+      </div>
     </div >
   );
 };
