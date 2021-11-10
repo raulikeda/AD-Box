@@ -1,4 +1,5 @@
-pragma solidity >=0.4.22 <0.7.0;
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.22 < 0.9.0;
 
 
 /**
@@ -6,17 +7,17 @@ pragma solidity >=0.4.22 <0.7.0;
  * @dev Implements bank system
  */
 contract Bank {
-    uint256 public capital;
-    address public owner;
+    uint256 private capital;
+    address private owner;
 
     struct Client {
         address clientID;
         uint256 balance;
     }
 
-    mapping(address => Client) public clients;
+    mapping(address => Client) private clients;
 
-    constructor() public payable {
+    constructor() payable {
         owner = msg.sender;
         capital = 0;
     }
@@ -46,7 +47,7 @@ contract Bank {
         if (clients[msg.sender].balance >= amount) {
             clients[msg.sender].balance -= amount;
             capital -= amount;
-            msg.sender.transfer(amount);
+            payable(msg.sender).transfer(amount);
             return amount;
         }
         return 0;
