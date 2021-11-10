@@ -17,7 +17,7 @@ contract Bank {
 
     mapping(address => Client) private clients;
 
-    constructor() payable {
+    constructor() public payable {
         owner = msg.sender;
         capital = 0;
     }
@@ -47,7 +47,7 @@ contract Bank {
         if (clients[msg.sender].balance >= amount) {
             clients[msg.sender].balance -= amount;
             capital -= amount;
-            payable(msg.sender).transfer(amount);
+            msg.sender.transfer(amount);
             return amount;
         }
         return 0;
