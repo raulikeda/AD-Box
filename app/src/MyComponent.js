@@ -52,8 +52,8 @@ export default ({ drizzle, drizzleState }) => {
             drizzle={drizzle}
             drizzleState={drizzleState}
             contract="Bank"
-            method="clients"
-            methodArgs={[drizzleState.accounts[acc]]}
+            method="balance"
+            sendArgs={{ "from": drizzleState.accounts[acc] }}
           />
         </p>
 
